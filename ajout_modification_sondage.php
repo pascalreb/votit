@@ -51,7 +51,7 @@ if (isset($_POST['saveItem'])) {
         if ($res) {
             $itemMessage = 'La proposition a bien été enregistrée';
         } else {
-            $itemError =  'La proposiition n\'a pas été sauvegardée';
+            $itemError =  'La proposition n\'a pas été sauvegardée';
         }
     }
 } else {
@@ -62,9 +62,9 @@ if (isset($_POST['saveItem'])) {
         } else if ($_GET['action'] === 'delete') {
             $res = deletePollItemById($pdo, $_GET['item_id']);
             if ($res) {
-                $itemMessage = 'La proposition a bien été suprimée';
+                $itemMessage = 'La proposition a bien été supprimée';
             } else {
-                $itemError = 'Une erreur est survenue pendant la supression';
+                $itemError = 'Une erreur est survenue pendant la suppression';
             }
 
         }
