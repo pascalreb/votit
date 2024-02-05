@@ -8,7 +8,7 @@ $messages = [];
 $errors = [];
 
 if (isset($_GET['id'])) {
-    $id = (int)$_GET['id'];
+    $id = (int)$_GET['id']; // on caste l'id en int car de type string de base
     $poll = getPollById($pdo, $id);
 
     if ($poll) {
@@ -26,8 +26,6 @@ if (isset($_GET['id'])) {
                     $errors[] = "Une erreur est survenue pendant l'ajout du vote.";
                 }
             }
-
-
         }
 
         $results = getPollResultsByPollId($pdo, $id);
@@ -41,8 +39,6 @@ if (isset($_GET['id'])) {
 }
 
 require_once 'templates/header.php';
-
-
 
 
 if (!$error404) {

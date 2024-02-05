@@ -2,7 +2,7 @@
 
 function getPolls(PDO $pdo, int $limit = null): array
 {
-
+    // Selectionne tous les champs de poll, joint category.id de la table category à category_id de la table poll
     $sql = "SELECT poll.*, category.name as category_name FROM poll
             JOIN category ON category.id = poll.category_id
             ORDER BY poll.id DESC";
@@ -21,7 +21,7 @@ function getPolls(PDO $pdo, int $limit = null): array
     return $query->fetchAll(PDO::FETCH_ASSOC);
 }
 
-function getPollById(PDO $pdo, int $id): array|bool
+function getPollById(PDO $pdo, int $id): array|bool //type bool si aucun retour
 {
     $query = $pdo->prepare('SELECT * FROM poll WHERE id = :id');
     $query->bindValue(':id', $id, PDO::PARAM_INT);
@@ -31,7 +31,7 @@ function getPollById(PDO $pdo, int $id): array|bool
 }
 
 function getPollResultsByPollId(PDO $pdo, int $id): array
-{
+{   // LEFT JOIN dans le cas où il n'y a pas de données (ici pas de vote pour un sondage), pi raccourci de poll_item
     $query = $pdo->prepare('SELECT pi.id, pi.name, COUNT(upi.poll_item_id) as votes FROM poll_item pi
                             LEFT JOIN user_poll_item upi ON upi.poll_item_id = pi.id
                             WHERE poll_id = :id
@@ -44,7 +44,7 @@ function getPollResultsByPollId(PDO $pdo, int $id): array
 }
 
 function getPollTotalUsersByPollId(PDO $pdo, int $id): int
-{
+{   // COUNT pour compter le nombre d'utilisateurs et DISTINCT pour supprimer les doublons des user_id
     $query = $pdo->prepare('SELECT COUNT(DISTINCT upi.user_id) as total_users 
                             FROM poll_item pi 
                             LEFT JOIN user_poll_item upi ON upi.poll_item_id = pi.id 
