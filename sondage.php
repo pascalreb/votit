@@ -16,7 +16,7 @@ if (isset($_GET['id'])) {
 
         if (isset($_SESSION['user']) && isset($_POST['voteSubmit'])) {
             if (empty($_POST['items'])) {
-                $errors[] = "Vous devez sélectionner au moins une proposition";
+                $errors[] = "Vous devez sélectionner au moins une proposition.";
             } else {
                 removeVotesByPollIdAndUserId($pdo, $id, (int)$_SESSION['user']['id']);
                 $resAddVote = addVote($pdo, (int)$_SESSION['user']['id'], $_POST['items']);
@@ -76,7 +76,8 @@ if (!$error404) {
                             <h3><?= $poll['title']; ?></h3>
                             <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
                                 <?php foreach ($items as $key => $item) { ?>
-                                    <input type="checkbox" class="btn-check" id="btncheck<?= $item['id'] ?>" autocomplete="off" value="<?= $item['id'] ?>" name="items[]">
+                                    <input type="checkbox" class="btn-check" id="btncheck<?= $item['id'] ?>" autocomplete="off" 
+                                    value="<?= $item['id'] ?>" name="items[]">
                                     <label class="btn btn-outline-primary" for="btncheck<?= $item['id'] ?>"><?= $item['name'] ?></label>
                                 <?php } ?>
                             </div>
@@ -110,7 +111,7 @@ if (!$error404) {
 
     </div>
 <?php } else { ?>
-    <h1>Le sondage n'existe pas</h1>
+    <h1>Le sondage n'existe pas.</h1>
 <?php } ?>
 
 

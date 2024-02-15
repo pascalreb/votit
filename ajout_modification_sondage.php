@@ -38,20 +38,20 @@ if (isset($_POST['savePoll'])) {
     if ($res) {
         header('Location: ajout_modification_sondage.php?id=' . $res);
     } else {
-        $pollError = 'Le sondage n\'a pas été sauvegardé';
+        $pollError = 'Le sondage n\'a pas été sauvegardé.';
     }
 }
 
 
 if (isset($_POST['saveItem'])) {
     if (empty($_POST['name'])) {
-        $itemError = 'Le nom ne doit pas être vide';
+        $itemError = 'La proposition ne doit pas être vide.';
     } else {
         $res = savePollItem($pdo, (int)$_GET['id'], $_POST['name'], (int)$_POST['id']);
         if ($res) {
-            $itemMessage = 'La proposition a bien été enregistrée';
+            $itemMessage = 'La proposition a bien été enregistrée.';
         } else {
-            $itemError =  'La proposition n\'a pas été sauvegardée';
+            $itemError =  'La proposition n\'a pas été sauvegardée.';
         }
     }
 } else {
@@ -62,9 +62,9 @@ if (isset($_POST['saveItem'])) {
         } else if ($_GET['action'] === 'delete') {
             $res = deletePollItemById($pdo, $_GET['item_id']);
             if ($res) {
-                $itemMessage = 'La proposition a bien été supprimée';
+                $itemMessage = 'La proposition a bien été supprimée.';
             } else {
-                $itemError = 'Une erreur est survenue pendant la suppression';
+                $itemError = 'Une erreur est survenue pendant la suppression.';
             }
 
         }
@@ -146,11 +146,9 @@ if (isset($_GET['id'])) {
                     <tr>
                         <td><?= $pollItem['name'] ?></td>
                         <td><a href="ajout_modification_sondage.php?id=<?=$_GET['id']?>&item_id=<?=$pollItem['id']?>&action=edit">Modifier</a>
-                            | <a href="ajout_modification_sondage.php?id=<?=$_GET['id']?>&item_id=<?=$pollItem['id']?>&action=delete" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet article ?')">Supprimer</a></td>
+                            | <a href="ajout_modification_sondage.php?id=<?=$_GET['id']?>&item_id=<?=$pollItem['id']?>&action=delete" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette proposition ?')">Supprimer</a></td>
                     </tr>
                 <?php } ?>
-
-
             </tbody>
         </table>
     </div>
