@@ -54,6 +54,8 @@
                     <a href="logout.php" class="btn btn-primary">Déconnexion</a>
                 <?php } else { ?>
                     <a href="login.php" class="btn btn-outline-primary me-2">Connexion</a>
+                    <a href="inscription.php" class="btn btn-primary">Inscription</a>
+
                 <?php } ?>
             </div>
         </header>
