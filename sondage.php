@@ -45,8 +45,8 @@ if (!$error404) {
 ?>
     <div class="row align-items-center g-5 py-5">
         <div class="col-lg-6">
-            <h1 class="display-5 fw-bold lh-1 mb-3"><?= $poll['title'] ?></h1>
-            <p class="lead"><?= $poll['description'] ?></p>
+            <h1 class="display-5 fw-bold lh-1 mb-3"><?= htmlentities($poll['title']) ?></h1>
+            <p class="lead"><?= htmlentities($poll['description']) ?></p>
 
         </div>
         <div class="col-10 col-sm-8 col-lg-6">
@@ -73,7 +73,7 @@ if (!$error404) {
                     <div>
                         <form method="post">
                             <h2>Votez pour ce sondage :</h2>
-                            <h3><?= $poll['title']; ?></h3>
+                            <h3><?= htmlentities($poll['title']) ?></h3>
                             <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
                                 <?php foreach ($items as $key => $item) { ?>
                                     <input type="checkbox" class="btn-check" id="btncheck<?= $item['id'] ?>" autocomplete="off" 
